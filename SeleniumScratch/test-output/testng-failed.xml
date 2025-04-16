@@ -2,12 +2,16 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Failed suite [EcommerceSuite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="FunctionalTest(failed)">
+    <parameter name="browser" value="chrome"/>
+    <groups>
+      <run>
+        <include name="smoke"/>
+      </run>
+    </groups>
     <classes>
       <class name="SylviaAcademy.tests.LoginTest">
         <methods>
-          <include name="testLogin" invocation-numbers="1"/>
-          <include name="setUp"/>
-          <include name="tearDown"/>
+          <include name="testLoginSuccess" invocation-numbers="0"/>
         </methods>
       </class> <!-- SylviaAcademy.tests.LoginTest -->
     </classes>

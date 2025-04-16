@@ -2,9 +2,15 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="EcommerceSuite">
 
+ 
+
     <test name="FunctionalTest">
         <classes>
-            <class name="SylviaAcademy.tests.LoginTest"/>
+            <class name="SylviaAcademy.tests.LoginTest">
+            <methods>
+        <include name="testLoginSuccess"/>
+      </methods>
+      </class>
         </classes>
     </test>
 

@@ -1,5 +1,7 @@
 package SylviaAcademy.tests;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -31,12 +33,12 @@ public class LoginTest extends BaseTest {
     // === 2. Test de succès (uniquement pour les credentials valides) ===
     @Test(dataProvider = "validCredentials", groups = "smoke")
     public void testLoginSuccess(String username, String password) {
-        LoginPage loginPage = new LoginPage(driver);
         loginPage.login(username, password);
+        waitForWebElementToLocate(By.cssSelector(".btn.btn-custom[routerlink='/dashboard/']"));
+        assertRedirectionToDashboard(driver);
+        assertNoLoginErrorDisplayed(driver);
         
-        // Vérifications pour le succès
-        Assert.assertTrue(driver.getCurrentUrl().contains("/dashboard"), "Redirection échouée après connexion");
-        Assert.assertFalse(isErrorMessageDisplayed(), "Un message d'erreur est affiché malgré la connexion réussie");
+
     }
 
     // === 3. Test d'échec (pour les cas invalides) ===

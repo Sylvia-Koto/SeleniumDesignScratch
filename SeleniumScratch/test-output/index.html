@@ -50,7 +50,7 @@
               <ul>
                 <li>
                   <a href="#" panel-name="test-xml-EcommerceSuite" class="navigator-link ">
-                    <span>testng.xml</span>
+                    <span>testng2.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -92,7 +92,7 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">2 methods,   2 passed</span>
+                    <span class="method-stats">1 method,   1 passed</span>
                   </li>
                   <li>
                     <span class="method-list-title passed">Passed methods</span>
@@ -103,12 +103,7 @@
                     <div class="method-list-content passed suite-EcommerceSuite">
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-EcommerceSuite" title="SylviaAcademy.tests.LoginTest" class="method navigator-link" hash-for-method="testLogin(queentester@gmail.com, Test@@1234, true)">testLogin(queentester@gmail.com, Test@@1234, true)</a> <!-- method navigator-link -->
-                      </span>
-                      <br/>
-                      <span>
-                        <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-EcommerceSuite" title="SylviaAcademy.tests.LoginTest" class="method navigator-link" hash-for-method="testLogin(queentester@gmail.com, invalidPass, false)">testLogin(queentester@gmail.com, invalidPass, false)</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-EcommerceSuite" title="SylviaAcademy.tests.LoginTest" class="method navigator-link" hash-for-method="testLoginSuccess(queentester@gmail.com, Test@@1234)">testLoginSuccess(queentester@gmail.com, Test@@1234)</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-EcommerceSuite -->
@@ -131,18 +126,10 @@
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="testLogin(queentester@gmail.com, Test@@1234, true)">
-                  </a> <!-- testLogin(queentester@gmail.com, Test@@1234, true) -->
-                  <span class="method-name">testLogin</span>
-                  <span class="parameters">(queentester@gmail.com,Test@@1234,true)</span>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-              <div class="method">
-                <div class="method-content">
-                  <a name="testLogin(queentester@gmail.com, invalidPass, false)">
-                  </a> <!-- testLogin(queentester@gmail.com, invalidPass, false) -->
-                  <span class="method-name">testLogin</span>
-                  <span class="parameters">(queentester@gmail.com,invalidPass,false)</span>
+                  <a name="testLoginSuccess(queentester@gmail.com, Test@@1234)">
+                  </a> <!-- testLoginSuccess(queentester@gmail.com, Test@@1234) -->
+                  <span class="method-name">testLoginSuccess</span>
+                  <span class="parameters">(queentester@gmail.com,Test@@1234)</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -150,7 +137,7 @@
         </div> <!-- panel EcommerceSuite -->
         <div panel-name="test-xml-EcommerceSuite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">/Users/sylvianguessan/git/repository/SeleniumScratch/testng.xml</span>
+            <span class="header-content">/Users/sylvianguessan/git/repository/SeleniumScratch/testng2.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -158,6 +145,12 @@
 &lt;!DOCTYPE suite SYSTEM &quot;https://testng.org/testng-1.0.dtd&quot;&gt;
 &lt;suite name=&quot;EcommerceSuite&quot; guice-stage=&quot;DEVELOPMENT&quot;&gt;
   &lt;test thread-count=&quot;5&quot; name=&quot;FunctionalTest&quot;&gt;
+    &lt;parameter name=&quot;browser&quot; value=&quot;chrome&quot;/&gt;
+    &lt;groups&gt;
+      &lt;run&gt;
+        &lt;include name=&quot;smoke&quot;/&gt;
+      &lt;/run&gt;
+    &lt;/groups&gt;
     &lt;classes&gt;
       &lt;class name=&quot;SylviaAcademy.tests.LoginTest&quot;/&gt;
     &lt;/classes&gt;
@@ -187,7 +180,7 @@
               <span class="test-group-name">smoke</span>
               <br/>
               <div class="method-in-group">
-                <span class="method-in-group-name">testLogin</span>
+                <span class="method-in-group-name">testLoginSuccess</span>
                 <br/>
               </div> <!-- method-in-group -->
             </div> <!-- test-group -->
@@ -207,20 +200,16 @@ data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(2);
+data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'testLogin')
+data.setCell(0, 1, 'testLoginSuccess')
 data.setCell(0, 2, 'SylviaAcademy.tests.LoginTest')
-data.setCell(0, 3, 5554);
-data.setCell(1, 0, 1)
-data.setCell(1, 1, 'testLogin')
-data.setCell(1, 2, 'SylviaAcademy.tests.LoginTest')
-data.setCell(1, 3, 4675);
+data.setCell(0, 3, 6053);
 window.suiteTableData['EcommerceSuite']= { tableData: data, tableDiv: 'times-div-EcommerceSuite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 10 seconds</span>
+              <span class="suite-total-time">Total running time: 6 seconds</span>
               <div id="times-div-EcommerceSuite">
               </div> <!-- times-div-EcommerceSuite -->
             </div> <!-- times-div -->
@@ -235,9 +224,16 @@ return data;
         </div> <!-- panel -->
         <div panel-name="ignored-methods-EcommerceSuite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">0 ignored methods</span>
+            <span class="header-content">1 ignored method</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">SylviaAcademy.tests.LoginTest</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">testLoginFailure</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
         <div panel-name="chronological-EcommerceSuite" class="panel">
@@ -252,24 +248,12 @@ return data;
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
-                <span class="method-name">testLogin(queentester@gmail.com, Test@@1234, true)</span>
-                <span class="method-start">1039 ms</span>
+                <span class="method-name">testLoginSuccess(queentester@gmail.com, Test@@1234)</span>
+                <span class="method-start">2908 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <span class="method-name">tearDown</span>
-                <span class="method-start">5716 ms</span>
-              </div> <!-- configuration-method after -->
-              <div class="configuration-method before">
-                <span class="method-name">setUp(chrome)</span>
-                <span class="method-start">5800 ms</span>
-              </div> <!-- configuration-method before -->
-              <div class="test-method">
-                <span class="method-name">testLogin(queentester@gmail.com, invalidPass, false)</span>
-                <span class="method-start">6555 ms</span>
-              </div> <!-- test-method -->
-              <div class="configuration-method after">
-                <span class="method-name">tearDown</span>
-                <span class="method-start">12110 ms</span>
+                <span class="method-start">8966 ms</span>
               </div> <!-- configuration-method after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
