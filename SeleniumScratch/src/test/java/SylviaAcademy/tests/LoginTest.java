@@ -22,11 +22,11 @@ public class LoginTest extends BaseTest {
     public Object[][] provideInvalidCredentials() {
         return new Object[][]{
             // Format: username, password, expectedEmailError, expectedPasswordError
-            {"queentester@gmail.com", "invalidPass", null, "Incorrect password"}, // ❌ Mot de passe incorrect
-            {"", "Test@@1234", "Email is required", null},                        // ❌ Email vide
-            {"invalidUser@gmail.com", "invalidPass", "Incorrect email", "Incorrect password"}, // ❌ Email + mot de passe incorrects
-            {"", "", "Email is required", "Password is required"},                // ❌ Champs vides
-            {"queentester@gmail.com", "", null, "Password is required"}           // ❌ Mot de passe vide
+            {"queentester@gmail.com", "invalidPass", null, null}, // ❌ Incorrect Password
+            {"", "Test@@1234", "*Email is required", null},                        // ❌ Email vide
+            {"invalidUser@gmail.com", "invalidPass", null, null}, // ❌ Incorrect Password and email
+            {"", "", "*Email is required", "*Password is required"},                // ❌ Champs vides
+            {"queentester@gmail.com", "", null, "*Password is required"}           // ❌ Mot de passe vide
         };
     }
 
@@ -44,14 +44,17 @@ public class LoginTest extends BaseTest {
     // === 3. Test d'échec (pour les cas invalides) ===
     @Test(dataProvider = "invalidCredentials")
     public void testLoginFailure(String username, String password, String expectedEmailError, String expectedPasswordError) {
-        LoginPage loginPage = new LoginPage(driver);
         loginPage.login(username, password);
         
+        if (expectedEmailError == null && expectedPasswordError == null) {
+        	assertLoginErrorDisplayed(driver);
+        }
+        
         // Vérifications dynamiques des erreurs
-        if (expectedEmailError != null) {
+       if (expectedEmailError != null) {
             Assert.assertEquals(getEmailError(), expectedEmailError, "Message d'erreur email incorrect");
         }
-        if (expectedPasswordError != null) {
+       if (expectedPasswordError != null) {
             Assert.assertEquals(getPasswordError(), expectedPasswordError, "Message d'erreur mot de passe incorrect");
         }
     }

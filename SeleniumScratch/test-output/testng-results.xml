@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="1" total="2" passed="1" failed="0" skipped="0">
+<testng-results ignored="0" total="6" passed="6" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-04-16T15:31:59 GMT" name="EcommerceSuite" finished-at="2025-04-16T15:32:08 GMT" duration-ms="9069">
+  <suite started-at="2025-04-16T18:16:33 GMT" name="EcommerceSuite" finished-at="2025-04-16T18:17:13 GMT" duration-ms="40089">
     <groups>
       <group name="smoke">
-        <method signature="LoginTest.testLoginSuccess(java.lang.String,java.lang.String)[pri:0, instance:SylviaAcademy.tests.LoginTest@13c9d689]" name="testLoginSuccess" class="SylviaAcademy.tests.LoginTest"/>
+        <method signature="LoginTest.testLoginSuccess(java.lang.String,java.lang.String)[pri:0, instance:SylviaAcademy.tests.LoginTest@2d3379b4]" name="testLoginSuccess" class="SylviaAcademy.tests.LoginTest"/>
       </group> <!-- smoke -->
     </groups>
-    <test started-at="2025-04-16T15:31:59 GMT" name="FunctionalTest" finished-at="2025-04-16T15:32:08 GMT" duration-ms="9069">
+    <test started-at="2025-04-16T18:16:33 GMT" name="FunctionalTest" finished-at="2025-04-16T18:17:13 GMT" duration-ms="40089">
       <class name="SylviaAcademy.tests.LoginTest">
-        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:SylviaAcademy.tests.LoginTest@13c9d689]" started-at="2025-04-16T15:31:59 GMT" name="setUp" finished-at="2025-04-16T15:32:02 GMT" duration-ms="2907" status="PASS">
+        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:SylviaAcademy.tests.LoginTest@2d3379b4]" started-at="2025-04-16T18:16:33 GMT" name="setUp" finished-at="2025-04-16T18:16:41 GMT" duration-ms="7504" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -21,7 +21,200 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="testLoginSuccess(java.lang.String,java.lang.String)[pri:0, instance:SylviaAcademy.tests.LoginTest@13c9d689]" started-at="2025-04-16T15:32:02 GMT" name="testLoginSuccess" data-provider="validCredentials" finished-at="2025-04-16T15:32:08 GMT" duration-ms="6053" status="PASS">
+        <test-method signature="testLoginFailure(java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:SylviaAcademy.tests.LoginTest@2d3379b4]" started-at="2025-04-16T18:16:41 GMT" name="testLoginFailure" data-provider="invalidCredentials" finished-at="2025-04-16T18:16:41 GMT" duration-ms="684" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[queentester@gmail.com]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[invalidPass]]>
+              </value>
+            </param>
+            <param index="2">
+              <value is-null="true"/>
+            </param>
+            <param index="3">
+              <value is-null="true"/>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testLoginFailure -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:SylviaAcademy.tests.LoginTest@2d3379b4]" started-at="2025-04-16T18:16:41 GMT" name="tearDown" finished-at="2025-04-16T18:16:42 GMT" duration-ms="86" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:SylviaAcademy.tests.LoginTest@2d3379b4]" started-at="2025-04-16T18:16:42 GMT" name="setUp" finished-at="2025-04-16T18:16:43 GMT" duration-ms="1747" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="testLoginFailure(java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:SylviaAcademy.tests.LoginTest@2d3379b4]" started-at="2025-04-16T18:16:43 GMT" name="testLoginFailure" data-provider="invalidCredentials" finished-at="2025-04-16T18:16:47 GMT" duration-ms="3539" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Test@@1234]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[*Email is required]]>
+              </value>
+            </param>
+            <param index="3">
+              <value is-null="true"/>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testLoginFailure -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:SylviaAcademy.tests.LoginTest@2d3379b4]" started-at="2025-04-16T18:16:47 GMT" name="tearDown" finished-at="2025-04-16T18:16:47 GMT" duration-ms="81" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:SylviaAcademy.tests.LoginTest@2d3379b4]" started-at="2025-04-16T18:16:47 GMT" name="setUp" finished-at="2025-04-16T18:16:52 GMT" duration-ms="5064" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="testLoginFailure(java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:SylviaAcademy.tests.LoginTest@2d3379b4]" started-at="2025-04-16T18:16:52 GMT" name="testLoginFailure" data-provider="invalidCredentials" finished-at="2025-04-16T18:16:53 GMT" duration-ms="667" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[invalidUser@gmail.com]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[invalidPass]]>
+              </value>
+            </param>
+            <param index="2">
+              <value is-null="true"/>
+            </param>
+            <param index="3">
+              <value is-null="true"/>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testLoginFailure -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:SylviaAcademy.tests.LoginTest@2d3379b4]" started-at="2025-04-16T18:16:53 GMT" name="tearDown" finished-at="2025-04-16T18:16:53 GMT" duration-ms="85" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:SylviaAcademy.tests.LoginTest@2d3379b4]" started-at="2025-04-16T18:16:53 GMT" name="setUp" finished-at="2025-04-16T18:16:58 GMT" duration-ms="5389" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="testLoginFailure(java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:SylviaAcademy.tests.LoginTest@2d3379b4]" started-at="2025-04-16T18:16:58 GMT" name="testLoginFailure" data-provider="invalidCredentials" finished-at="2025-04-16T18:16:58 GMT" duration-ms="105" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[*Email is required]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[*Password is required]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testLoginFailure -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:SylviaAcademy.tests.LoginTest@2d3379b4]" started-at="2025-04-16T18:16:58 GMT" name="tearDown" finished-at="2025-04-16T18:16:58 GMT" duration-ms="82" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:SylviaAcademy.tests.LoginTest@2d3379b4]" started-at="2025-04-16T18:16:58 GMT" name="setUp" finished-at="2025-04-16T18:17:05 GMT" duration-ms="6258" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="testLoginFailure(java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:SylviaAcademy.tests.LoginTest@2d3379b4]" started-at="2025-04-16T18:17:05 GMT" name="testLoginFailure" data-provider="invalidCredentials" finished-at="2025-04-16T18:17:05 GMT" duration-ms="129" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[queentester@gmail.com]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="2">
+              <value is-null="true"/>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[*Password is required]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testLoginFailure -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:SylviaAcademy.tests.LoginTest@2d3379b4]" started-at="2025-04-16T18:17:05 GMT" name="tearDown" finished-at="2025-04-16T18:17:05 GMT" duration-ms="81" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:SylviaAcademy.tests.LoginTest@2d3379b4]" started-at="2025-04-16T18:17:05 GMT" name="setUp" finished-at="2025-04-16T18:17:10 GMT" duration-ms="5732" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="testLoginSuccess(java.lang.String,java.lang.String)[pri:0, instance:SylviaAcademy.tests.LoginTest@2d3379b4]" started-at="2025-04-16T18:17:10 GMT" name="testLoginSuccess" data-provider="validCredentials" finished-at="2025-04-16T18:17:13 GMT" duration-ms="2740" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -37,7 +230,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testLoginSuccess -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:SylviaAcademy.tests.LoginTest@13c9d689]" started-at="2025-04-16T15:32:08 GMT" name="tearDown" finished-at="2025-04-16T15:32:08 GMT" duration-ms="90" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:SylviaAcademy.tests.LoginTest@2d3379b4]" started-at="2025-04-16T18:17:13 GMT" name="tearDown" finished-at="2025-04-16T18:17:13 GMT" duration-ms="92" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->

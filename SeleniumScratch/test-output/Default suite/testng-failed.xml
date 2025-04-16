@@ -6,8 +6,8 @@
       <class name="SylviaAcademy.tests.LoginTest">
         <methods>
           <include name="setUp"/>
-          <include name="testLoginSuccess" invocation-numbers="0"/>
           <include name="tearDown"/>
+          <include name="testLoginFailure" invocation-numbers="0"/>
         </methods>
       </class> <!-- SylviaAcademy.tests.LoginTest -->
     </classes>

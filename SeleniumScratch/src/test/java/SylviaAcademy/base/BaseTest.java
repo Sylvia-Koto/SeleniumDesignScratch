@@ -40,15 +40,15 @@ public class BaseTest {
 	    }
 	    
 	    public String getEmailError() {
-	        return driver.findElement(By.id("error-email")).getText();
+	        return driver.findElement(By.xpath("//input[@id='userEmail']/following-sibling::div[@class='invalid-feedback']/div")).getText();
 	    }
 
 	    public String getPasswordError() {
-	        return driver.findElement(By.id("error-password")).getText();
+	        return driver.findElement(By.xpath("//input[@id='userPassword']/following-sibling::div[@class='invalid-feedback']/div")).getText();
 	    }
 
 	    public boolean isErrorMessageDisplayed() {
-	        return driver.findElements(By.cssSelector(".error-message")).size() > 0;
+	        return driver.findElements(By.cssSelector(".toast-message")).size() > 0;
 	    }
 	    
 		public void waitForWebElementToAppear(WebElement findBy) {
@@ -85,10 +85,24 @@ public class BaseTest {
 	    public static void assertNoLoginErrorDisplayed(WebDriver driver) {
 	        Assert.assertFalse(isErrorMessageDisplayed(driver), "Un message d'erreur est affiché malgré la connexion réussie");
 	    }
+	    
+	    public static void assertLoginErrorDisplayed(WebDriver driver) {
+	        Assert.assertTrue(VerifyErrorMessageDisplayed(driver), "le message d'erreur n'est pas affiché");
+	    }
 
 	    public static boolean isErrorMessageDisplayed(WebDriver driver) {
 	        try {
 	            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+	            wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".toast-message")));
+	            return driver.findElement(By.cssSelector(".toast-message")).isDisplayed();
+	        } catch (NoSuchElementException | org.openqa.selenium.TimeoutException e) {
+	            return false;
+	        }
+	    }
+	    
+	    public static boolean VerifyErrorMessageDisplayed(WebDriver driver) {
+	        try {
+	            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 	            wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".toast-message")));
 	            return driver.findElement(By.cssSelector(".toast-message")).isDisplayed();
 	        } catch (NoSuchElementException | org.openqa.selenium.TimeoutException e) {

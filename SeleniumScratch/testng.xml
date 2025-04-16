@@ -7,9 +7,6 @@
     <test name="FunctionalTest">
         <classes>
             <class name="SylviaAcademy.tests.LoginTest">
-            <methods>
-        <include name="testLoginSuccess"/>
-      </methods>
       </class>
         </classes>
     </test>
