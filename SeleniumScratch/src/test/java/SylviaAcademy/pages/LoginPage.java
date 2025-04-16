@@ -18,6 +18,7 @@ public class LoginPage {
 
 	    // Actions
 	    public void login(String username, String password) {
+	    	driver.get("https://rahulshettyacademy.com/client");
 	        driver.findElement(usernameInput).sendKeys(username);
 	        driver.findElement(passwordInput).sendKeys(password);
 	        driver.findElement(loginButton).click();

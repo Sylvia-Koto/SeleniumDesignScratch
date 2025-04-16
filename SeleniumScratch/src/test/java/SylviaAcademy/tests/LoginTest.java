@@ -1,53 +1,56 @@
 package SylviaAcademy.tests;
 
-import java.time.Duration;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-
 import SylviaAcademy.base.BaseTest;
 import SylviaAcademy.pages.LoginPage;
 
 public class LoginTest extends BaseTest {
 
-    @DataProvider(name = "loginCredentials")
-    public Object[][] getLoginData() {
+    // === 1. DataProviders séparés pour succès/échec ===
+    @DataProvider(name = "validCredentials")
+    public Object[][] provideValidCredentials() {
         return new Object[][]{
-            {"queentester@gmail.com", "Test@@1234", true},  // ✅ Valide
-            {"invalidUser", "invalidPass", false},          // ❌ Faux identifiants
-            {"", "", false},                                // ❌ Vide
-            {"queentester@gmail.com", "", false},           // ❌ Mot de passe manquant
-            {"", "Test1234", false}                          // ❌ Email manquant
+            {"queentester@gmail.com", "Test@@1234"}  // ✅ Cas de succès
         };
     }
 
-    @Test(dataProvider = "loginCredentials", groups = "smoke")
-    public void testLogin(String username, String password, boolean isSuccessExpected) {
-        driver.get("https://rahulshettyacademy.com/client");
+    @DataProvider(name = "invalidCredentials")
+    public Object[][] provideInvalidCredentials() {
+        return new Object[][]{
+            // Format: username, password, expectedEmailError, expectedPasswordError
+            {"queentester@gmail.com", "invalidPass", null, "Incorrect password"}, // ❌ Mot de passe incorrect
+            {"", "Test@@1234", "Email is required", null},                        // ❌ Email vide
+            {"invalidUser@gmail.com", "invalidPass", "Incorrect email", "Incorrect password"}, // ❌ Email + mot de passe incorrects
+            {"", "", "Email is required", "Password is required"},                // ❌ Champs vides
+            {"queentester@gmail.com", "", null, "Password is required"}           // ❌ Mot de passe vide
+        };
+    }
 
+    // === 2. Test de succès (uniquement pour les credentials valides) ===
+    @Test(dataProvider = "validCredentials", groups = "smoke")
+    public void testLoginSuccess(String username, String password) {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login(username, password);
+        
+        // Vérifications pour le succès
+        Assert.assertTrue(driver.getCurrentUrl().contains("/dashboard"), "Redirection échouée après connexion");
+        Assert.assertFalse(isErrorMessageDisplayed(), "Un message d'erreur est affiché malgré la connexion réussie");
+    }
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-
-        boolean loginSuccess;
-        try {
-            // 🟢 Attendre un élément spécifique du dashboard pour confirmer la connexion
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".btn.btn-custom[routerlink='/dashboard/']")));
-            loginSuccess = true;
-        } catch (TimeoutException e) {
-            loginSuccess = false;
+    // === 3. Test d'échec (pour les cas invalides) ===
+    @Test(dataProvider = "invalidCredentials")
+    public void testLoginFailure(String username, String password, String expectedEmailError, String expectedPasswordError) {
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.login(username, password);
+        
+        // Vérifications dynamiques des erreurs
+        if (expectedEmailError != null) {
+            Assert.assertEquals(getEmailError(), expectedEmailError, "Message d'erreur email incorrect");
         }
-
-        if (isSuccessExpected) {
-            Assert.assertTrue(loginSuccess, "Login should succeed with valid credentials.");
-        } else {
-            Assert.assertFalse(loginSuccess, "Login should fail with invalid credentials.");
+        if (expectedPasswordError != null) {
+            Assert.assertEquals(getPasswordError(), expectedPasswordError, "Message d'erreur mot de passe incorrect");
         }
     }
 }

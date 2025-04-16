@@ -3,7 +3,6 @@
 <suite name="EcommerceSuite">
 
     <test name="FunctionalTest">
-        <!-- Aucune balise <groups>, donc tout sera exécuté -->
         <classes>
             <class name="SylviaAcademy.tests.LoginTest"/>
         </classes>
