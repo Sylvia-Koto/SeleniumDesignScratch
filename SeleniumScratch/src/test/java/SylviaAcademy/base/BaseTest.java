@@ -1,9 +1,14 @@
 package SylviaAcademy.base;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -37,6 +42,10 @@ public class BaseTest {
 	        if (driver != null) {
 	            driver.quit();
 	        }
+	    }
+	    
+	    public WebDriver getDriver() {
+	        return this.driver; // Assurez-vous que 'driver' est bien déclaré dans BaseTest
 	    }
 	    
 	    public String getEmailError() {
@@ -107,6 +116,32 @@ public class BaseTest {
 	            return driver.findElement(By.cssSelector(".toast-message")).isDisplayed();
 	        } catch (NoSuchElementException | org.openqa.selenium.TimeoutException e) {
 	            return false;
+	        }
+	    }
+	    public String getScreenshot(String testCaseName, WebDriver driver) throws IOException {
+	        // 1. Vérifier et créer le dossier reports si nécessaire
+	        File reportsDir = new File(System.getProperty("user.dir") + "//reports//");
+	        if (!reportsDir.exists()) {
+	            reportsDir.mkdirs();
+	        }
+	        
+	        // 2. Générer un nom de fichier unique avec timestamp
+	        String fileName = testCaseName + "_" + System.currentTimeMillis() + ".png";
+	        String fullPath = System.getProperty("user.dir") + "//reports//" + fileName;
+	        
+	        // 3. Prendre la capture d'écran
+	        try {
+	            TakesScreenshot ts = (TakesScreenshot) driver;
+	            File source = ts.getScreenshotAs(OutputType.FILE);
+	            
+	            // 4. Sauvegarder le fichier
+	            FileUtils.copyFile(source, new File(fullPath));
+	            
+	            // 5. Retourner le chemin complet pour ExtentReports
+	            return fullPath;
+	        } catch (Exception e) {
+	            System.err.println("Échec de la capture d'écran: " + e.getMessage());
+	            throw e; // Relancer l'exception pour la gestion dans le Listener
 	        }
 	    }
 }

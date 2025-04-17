@@ -23,7 +23,7 @@ public class LoginTest extends BaseTest {
         return new Object[][]{
             // Format: username, password, expectedEmailError, expectedPasswordError
             {"queentester@gmail.com", "invalidPass", null, null}, // ❌ Incorrect Password
-            {"", "Test@@1234", "*Email is required", null},                        // ❌ Email vide
+            {"", "Test@@1234", "*testscreen is required", null},                        // ❌ Email vide
             {"invalidUser@gmail.com", "invalidPass", null, null}, // ❌ Incorrect Password and email
             {"", "", "*Email is required", "*Password is required"},                // ❌ Champs vides
             {"queentester@gmail.com", "", null, "*Password is required"}           // ❌ Mot de passe vide
