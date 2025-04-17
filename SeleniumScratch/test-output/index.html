@@ -103,7 +103,7 @@
                     <div class="method-list-content failed suite-EcommerceSuite">
                       <span>
                         <img src="failed.png" width="3%"/>
-                        <a href="#" panel-name="suite-EcommerceSuite" title="SylviaAcademy.tests.LoginTest" class="method navigator-link" hash-for-method="testLoginFailure(, Test@@1234, *testscreen is required, null)">testLoginFailure(, Test@@1234, *testscreen is required, null)</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-EcommerceSuite" title="SylviaAcademy.tests.LoginTest" class="method navigator-link" hash-for-method="testLoginFailure(, Test@@1234, *Test fails, null)">testLoginFailure(, Test@@1234, *Test fails, null)</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content failed suite-EcommerceSuite -->
@@ -122,7 +122,7 @@
                       <br/>
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-EcommerceSuite" title="SylviaAcademy.tests.LoginTest" class="method navigator-link" hash-for-method="testLoginFailure(queentester@gmail.com, invalidPass, null, null)">testLoginFailure(queentester@gmail.com, invalidPass, null, null)</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-EcommerceSuite" title="SylviaAcademy.tests.LoginTest" class="method navigator-link" hash-for-method="testLoginFailure(queentester@gmail.com, , null, *Password is required)">testLoginFailure(queentester@gmail.com, , null, *Password is required)</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                       <span>
@@ -132,7 +132,7 @@
                       <br/>
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-EcommerceSuite" title="SylviaAcademy.tests.LoginTest" class="method navigator-link" hash-for-method="testLoginFailure(queentester@gmail.com, , null, *Password is required)">testLoginFailure(queentester@gmail.com, , null, *Password is required)</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-EcommerceSuite" title="SylviaAcademy.tests.LoginTest" class="method navigator-link" hash-for-method="testLoginFailure(queentester@gmail.com, invalidPass, null, null)">testLoginFailure(queentester@gmail.com, invalidPass, null, null)</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                       <span>
@@ -160,12 +160,12 @@
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="testLoginFailure(, Test@@1234, *testscreen is required, null)">
-                  </a> <!-- testLoginFailure(, Test@@1234, *testscreen is required, null) -->
+                  <a name="testLoginFailure(, Test@@1234, *Test fails, null)">
+                  </a> <!-- testLoginFailure(, Test@@1234, *Test fails, null) -->
                   <span class="method-name">testLoginFailure</span>
-                  <span class="parameters">(,Test@@1234,*testscreen is required,null)</span>
-                  <div class="stack-trace">java.lang.AssertionError: Message d&apos;erreur email incorrect expected [*testscreen is required] but found [*Email is required]
-	at SylviaAcademy.tests.LoginTest.testLoginFailure(LoginTest.java:55)
+                  <span class="parameters">(,Test@@1234,*Test fails,null)</span>
+                  <div class="stack-trace">java.lang.AssertionError: Message d&apos;erreur email incorrect expected [*Test fails] but found [*Email is required]
+	at SylviaAcademy.tests.LoginTest.testLoginFailure(LoginTest.java:60)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 ... Removed 30 stack frames
 </div> <!-- stack-trace -->
@@ -189,10 +189,10 @@
               </div> <!-- method -->
               <div class="method">
                 <div class="method-content">
-                  <a name="testLoginFailure(queentester@gmail.com, invalidPass, null, null)">
-                  </a> <!-- testLoginFailure(queentester@gmail.com, invalidPass, null, null) -->
+                  <a name="testLoginFailure(queentester@gmail.com, , null, *Password is required)">
+                  </a> <!-- testLoginFailure(queentester@gmail.com, , null, *Password is required) -->
                   <span class="method-name">testLoginFailure</span>
-                  <span class="parameters">(queentester@gmail.com,invalidPass,null,null)</span>
+                  <span class="parameters">(queentester@gmail.com,,null,*Password is required)</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
               <div class="method">
@@ -205,10 +205,10 @@
               </div> <!-- method -->
               <div class="method">
                 <div class="method-content">
-                  <a name="testLoginFailure(queentester@gmail.com, , null, *Password is required)">
-                  </a> <!-- testLoginFailure(queentester@gmail.com, , null, *Password is required) -->
+                  <a name="testLoginFailure(queentester@gmail.com, invalidPass, null, null)">
+                  </a> <!-- testLoginFailure(queentester@gmail.com, invalidPass, null, null) -->
                   <span class="method-name">testLoginFailure</span>
-                  <span class="parameters">(queentester@gmail.com,,null,*Password is required)</span>
+                  <span class="parameters">(queentester@gmail.com,invalidPass,null,null)</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
               <div class="method">
@@ -288,32 +288,32 @@ data.addRows(6);
 data.setCell(0, 0, 0)
 data.setCell(0, 1, 'testLoginSuccess')
 data.setCell(0, 2, 'SylviaAcademy.tests.LoginTest')
-data.setCell(0, 3, 5681);
+data.setCell(0, 3, 5642);
 data.setCell(1, 0, 1)
 data.setCell(1, 1, 'testLoginFailure')
 data.setCell(1, 2, 'SylviaAcademy.tests.LoginTest')
-data.setCell(1, 3, 3211);
+data.setCell(1, 3, 3593);
 data.setCell(2, 0, 2)
 data.setCell(2, 1, 'testLoginFailure')
 data.setCell(2, 2, 'SylviaAcademy.tests.LoginTest')
-data.setCell(2, 3, 2956);
+data.setCell(2, 3, 667);
 data.setCell(3, 0, 3)
 data.setCell(3, 1, 'testLoginFailure')
 data.setCell(3, 2, 'SylviaAcademy.tests.LoginTest')
-data.setCell(3, 3, 2819);
+data.setCell(3, 3, 131);
 data.setCell(4, 0, 4)
 data.setCell(4, 1, 'testLoginFailure')
 data.setCell(4, 2, 'SylviaAcademy.tests.LoginTest')
-data.setCell(4, 3, 657);
+data.setCell(4, 3, 122);
 data.setCell(5, 0, 5)
 data.setCell(5, 1, 'testLoginFailure')
 data.setCell(5, 2, 'SylviaAcademy.tests.LoginTest')
-data.setCell(5, 3, 116);
+data.setCell(5, 3, 109);
 window.suiteTableData['EcommerceSuite']= { tableData: data, tableDiv: 'times-div-EcommerceSuite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 15 seconds</span>
+              <span class="suite-total-time">Total running time: 10 seconds</span>
               <div id="times-div-EcommerceSuite">
               </div> <!-- times-div-EcommerceSuite -->
             </div> <!-- times-div -->
@@ -346,73 +346,73 @@ return data;
               </div> <!-- configuration-method before -->
               <div class="test-method">
                 <span class="method-name">testLoginFailure(queentester@gmail.com, invalidPass, null, null)</span>
-                <span class="method-start">2095 ms</span>
+                <span class="method-start">2779 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <span class="method-name">tearDown</span>
-                <span class="method-start">5308 ms</span>
+                <span class="method-start">6375 ms</span>
               </div> <!-- configuration-method after -->
               <div class="configuration-method before">
                 <span class="method-name">setUp(chrome)</span>
-                <span class="method-start">5395 ms</span>
+                <span class="method-start">6467 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
                 <img src="failed.png">
                 </img>
-                <span class="method-name">testLoginFailure(, Test@@1234, *testscreen is required, null)</span>
-                <span class="method-start">7005 ms</span>
+                <span class="method-name">testLoginFailure(, Test@@1234, *Test fails, null)</span>
+                <span class="method-start">11264 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <span class="method-name">tearDown</span>
-                <span class="method-start">10358 ms</span>
+                <span class="method-start">11650 ms</span>
               </div> <!-- configuration-method after -->
               <div class="configuration-method before">
                 <span class="method-name">setUp(chrome)</span>
-                <span class="method-start">10441 ms</span>
+                <span class="method-start">11733 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
                 <span class="method-name">testLoginFailure(invalidUser@gmail.com, invalidPass, null, null)</span>
-                <span class="method-start">15211 ms</span>
+                <span class="method-start">16623 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <span class="method-name">tearDown</span>
-                <span class="method-start">15870 ms</span>
+                <span class="method-start">17292 ms</span>
               </div> <!-- configuration-method after -->
               <div class="configuration-method before">
                 <span class="method-name">setUp(chrome)</span>
-                <span class="method-start">15955 ms</span>
+                <span class="method-start">17383 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
                 <span class="method-name">testLoginFailure(, , *Email is required, *Password is required)</span>
-                <span class="method-start">20632 ms</span>
+                <span class="method-start">21840 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <span class="method-name">tearDown</span>
-                <span class="method-start">20749 ms</span>
+                <span class="method-start">21950 ms</span>
               </div> <!-- configuration-method after -->
               <div class="configuration-method before">
                 <span class="method-name">setUp(chrome)</span>
-                <span class="method-start">20830 ms</span>
+                <span class="method-start">22032 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
                 <span class="method-name">testLoginFailure(queentester@gmail.com, , null, *Password is required)</span>
-                <span class="method-start">22393 ms</span>
+                <span class="method-start">26294 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <span class="method-name">tearDown</span>
-                <span class="method-start">25349 ms</span>
+                <span class="method-start">26425 ms</span>
               </div> <!-- configuration-method after -->
               <div class="configuration-method before">
                 <span class="method-name">setUp(chrome)</span>
-                <span class="method-start">25430 ms</span>
+                <span class="method-start">26503 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
                 <span class="method-name">testLoginSuccess(queentester@gmail.com, Test@@1234)</span>
-                <span class="method-start">27168 ms</span>
+                <span class="method-start">28108 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <span class="method-name">tearDown</span>
-                <span class="method-start">32851 ms</span>
+                <span class="method-start">33752 ms</span>
               </div> <!-- configuration-method after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

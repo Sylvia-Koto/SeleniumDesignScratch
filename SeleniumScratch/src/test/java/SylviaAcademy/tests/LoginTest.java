@@ -1,7 +1,14 @@
 package SylviaAcademy.tests;
 
+import java.time.Duration;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -23,10 +30,10 @@ public class LoginTest extends BaseTest {
         return new Object[][]{
             // Format: username, password, expectedEmailError, expectedPasswordError
             {"queentester@gmail.com", "invalidPass", null, null}, // ❌ Incorrect Password
-            {"", "Test@@1234", "*testscreen is required", null},                        // ❌ Email vide
+            {"", "Test@@1234", "*Test fails", null},       // ❌ Email vide
             {"invalidUser@gmail.com", "invalidPass", null, null}, // ❌ Incorrect Password and email
-            {"", "", "*Email is required", "*Password is required"},                // ❌ Champs vides
-            {"queentester@gmail.com", "", null, "*Password is required"}           // ❌ Mot de passe vide
+            {"", "", "*Email is required", "*Password is required"}, // ❌ Champs vides
+            {"queentester@gmail.com", "", null, "*Password is required"} // ❌ Mot de passe vide
         };
     }
 
@@ -35,10 +42,8 @@ public class LoginTest extends BaseTest {
     public void testLoginSuccess(String username, String password) {
         loginPage.login(username, password);
         waitForWebElementToLocate(By.cssSelector(".btn.btn-custom[routerlink='/dashboard/']"));
-        assertRedirectionToDashboard(driver);
-        assertNoLoginErrorDisplayed(driver);
-        
-
+        assertRedirectionToDashboard();
+        assertNoLoginErrorDisplayed();
     }
 
     // === 3. Test d'échec (pour les cas invalides) ===
@@ -47,15 +52,16 @@ public class LoginTest extends BaseTest {
         loginPage.login(username, password);
         
         if (expectedEmailError == null && expectedPasswordError == null) {
-        	assertLoginErrorDisplayed(driver);
+            assertLoginErrorDisplayed();
         }
         
         // Vérifications dynamiques des erreurs
-       if (expectedEmailError != null) {
+        if (expectedEmailError != null) {
             Assert.assertEquals(getEmailError(), expectedEmailError, "Message d'erreur email incorrect");
         }
-       if (expectedPasswordError != null) {
+        if (expectedPasswordError != null) {
             Assert.assertEquals(getPasswordError(), expectedPasswordError, "Message d'erreur mot de passe incorrect");
         }
     }
+    
 }

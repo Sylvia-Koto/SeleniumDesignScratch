@@ -7,12 +7,8 @@ import SylviaAcademy.pages.LoginPage;
 
 public class SubmitOrderTest extends BaseTest {
 
-	@Test
-	public void SubmitOrder() {
-		
-		LoginPage loginPage = new LoginPage(driver);
       
 		
-	}
+	
 
 }

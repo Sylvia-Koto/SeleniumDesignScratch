@@ -9,7 +9,7 @@ import org.openqa.selenium.safari.SafariDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class DriverFactory {
-	
+    
     public static WebDriver createDriver(String browser) {
         WebDriver driver;
 
@@ -30,7 +30,6 @@ public class DriverFactory {
                 break;
 
             case "safari":
-                // WebDriverManager n'est pas nécessaire pour Safari
                 driver = new SafariDriver();
                 break;
 
@@ -38,6 +37,8 @@ public class DriverFactory {
                 throw new IllegalArgumentException("Navigateur non supporté : " + browser);
         }
 
+        // Stocker le driver dans ThreadLocal
+        DriverManager.setDriver(driver);
         return driver;
     }
 }

@@ -21,61 +21,58 @@ import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 
 import SylviaAcademy.factory.DriverFactory;
+import SylviaAcademy.factory.DriverManager;
 import SylviaAcademy.pages.LoginPage;
 
 public class BaseTest {
 
-	  protected WebDriver driver;
-	  protected LoginPage loginPage;
+	protected LoginPage loginPage;
 
-	    @Parameters("browser")
-	    @BeforeMethod(alwaysRun = true)
-	    public void setUp(@Optional("chrome") String browser) {
-	        driver = DriverFactory.createDriver(browser);
-	        driver.get("https://rahulshettyacademy.com/client");
-	        loginPage = new LoginPage(driver); 
+    @Parameters("browser")
+    @BeforeMethod(alwaysRun = true)
+    public void setUp(@Optional("chrome") String browser) {
+        DriverFactory.createDriver(browser);
+        getDriver().get("https://rahulshettyacademy.com/client");
+        loginPage = new LoginPage(getDriver());
+    }
 
-	    }
-
-	    @AfterMethod(alwaysRun = true)
-	    public void tearDown() {
-	        if (driver != null) {
-	            driver.quit();
-	        }
-	    }
-	    
-	    public WebDriver getDriver() {
-	        return this.driver; // Assurez-vous que 'driver' est bien déclaré dans BaseTest
-	    }
+    @AfterMethod(alwaysRun = true)
+    public void tearDown() {
+        DriverManager.quitDriver();
+    }
+    
+    public WebDriver getDriver() {
+        return DriverManager.getDriver();
+    }
 	    
 	    public String getEmailError() {
-	        return driver.findElement(By.xpath("//input[@id='userEmail']/following-sibling::div[@class='invalid-feedback']/div")).getText();
+	        return getDriver().findElement(By.xpath("//input[@id='userEmail']/following-sibling::div[@class='invalid-feedback']/div")).getText();
 	    }
 
 	    public String getPasswordError() {
-	        return driver.findElement(By.xpath("//input[@id='userPassword']/following-sibling::div[@class='invalid-feedback']/div")).getText();
+	        return getDriver().findElement(By.xpath("//input[@id='userPassword']/following-sibling::div[@class='invalid-feedback']/div")).getText();
 	    }
 
-	    public boolean isErrorMessageDisplayed() {
-	        return driver.findElements(By.cssSelector(".toast-message")).size() > 0;
+	    public boolean isErrorMessageDisplayedold() {
+	        return getDriver().findElements(By.cssSelector(".toast-message")).size() > 0;
 	    }
 	    
 		public void waitForWebElementToAppear(WebElement findBy) {
 
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+			WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(5));
 			wait.until(ExpectedConditions.visibilityOf(findBy));
 
 		}
 		
 		public void waitForWebElementToLocate(By locBy) {
 
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+			WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(5));
 			wait.until(ExpectedConditions.visibilityOfElementLocated(locBy));
 
 		}
 		
 		public boolean isLoginErrorMessageDisplayed(String expectedMessage) {
-		    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+		    WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(3));
 		    try {
 		        WebElement errorMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(
 		            By.xpath("//*[contains(text(),'" + expectedMessage + "')]")));
@@ -87,61 +84,55 @@ public class BaseTest {
 		    
 		}
 		
-		public static void assertRedirectionToDashboard(WebDriver driver) {
-	        Assert.assertTrue(driver.getCurrentUrl().contains("/dashboard"), "Redirection échouée après connexion");
-	    }
+		public static void assertRedirectionToDashboard() {
+		    Assert.assertTrue(DriverManager.getDriver().getCurrentUrl().contains("/dashboard"), "Redirection échouée après connexion");
+		}
 
-	    public static void assertNoLoginErrorDisplayed(WebDriver driver) {
-	        Assert.assertFalse(isErrorMessageDisplayed(driver), "Un message d'erreur est affiché malgré la connexion réussie");
-	    }
-	    
-	    public static void assertLoginErrorDisplayed(WebDriver driver) {
-	        Assert.assertTrue(VerifyErrorMessageDisplayed(driver), "le message d'erreur n'est pas affiché");
-	    }
+		public static void assertNoLoginErrorDisplayed() {
+		    Assert.assertFalse(isErrorMessageDisplayed(), "Un message d'erreur est affiché malgré la connexion réussie");
+		}
 
-	    public static boolean isErrorMessageDisplayed(WebDriver driver) {
-	        try {
-	            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
-	            wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".toast-message")));
-	            return driver.findElement(By.cssSelector(".toast-message")).isDisplayed();
-	        } catch (NoSuchElementException | org.openqa.selenium.TimeoutException e) {
-	            return false;
-	        }
-	    }
-	    
-	    public static boolean VerifyErrorMessageDisplayed(WebDriver driver) {
-	        try {
-	            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-	            wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".toast-message")));
-	            return driver.findElement(By.cssSelector(".toast-message")).isDisplayed();
-	        } catch (NoSuchElementException | org.openqa.selenium.TimeoutException e) {
-	            return false;
-	        }
-	    }
-	    public String getScreenshot(String testCaseName, WebDriver driver) throws IOException {
-	        // 1. Vérifier et créer le dossier reports si nécessaire
-	        File reportsDir = new File(System.getProperty("user.dir") + "//reports//");
-	        if (!reportsDir.exists()) {
-	            reportsDir.mkdirs();
-	        }
-	        
-	        // 2. Générer un nom de fichier unique avec timestamp
-	        String fileName = testCaseName + "_" + System.currentTimeMillis() + ".png";
-	        String fullPath = System.getProperty("user.dir") + "//reports//" + fileName;
-	        
-	        // 3. Prendre la capture d'écran
-	        try {
-	            TakesScreenshot ts = (TakesScreenshot) driver;
-	            File source = ts.getScreenshotAs(OutputType.FILE);
-	            
-	            // 4. Sauvegarder le fichier
-	            FileUtils.copyFile(source, new File(fullPath));
-	            
-	            // 5. Retourner le chemin complet pour ExtentReports
-	            return fullPath;
-	        } catch (Exception e) {
-	            System.err.println("Échec de la capture d'écran: " + e.getMessage());
-	            throw e; // Relancer l'exception pour la gestion dans le Listener
-	        }
-	    }
+		public static void assertLoginErrorDisplayed() {
+		    Assert.assertTrue(VerifyErrorMessageDisplayed(), "Le message d'erreur n'est pas affiché");
+		}
+
+		public static boolean isErrorMessageDisplayed() {
+		    try {
+		        WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(2));
+		        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".toast-message")));
+		        return DriverManager.getDriver().findElement(By.cssSelector(".toast-message")).isDisplayed();
+		    } catch (NoSuchElementException | TimeoutException e) {
+		        return false;
+		    }
+		}
+
+		public static boolean VerifyErrorMessageDisplayed() {
+		    try {
+		        WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(5));
+		        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".toast-message")));
+		        return DriverManager.getDriver().findElement(By.cssSelector(".toast-message")).isDisplayed();
+		    } catch (NoSuchElementException | TimeoutException e) {
+		        return false;
+		    }
+		}
+
+		public static String getScreenshot(String testCaseName) throws IOException {
+		    File reportsDir = new File(System.getProperty("user.dir") + "//reports//");
+		    if (!reportsDir.exists()) {
+		        reportsDir.mkdirs();
+		    }
+		    
+		    String fileName = testCaseName + "_" + System.currentTimeMillis() + ".png";
+		    String fullPath = System.getProperty("user.dir") + "//reports//" + fileName;
+		    
+		    try {
+		        TakesScreenshot ts = (TakesScreenshot) DriverManager.getDriver();
+		        File source = ts.getScreenshotAs(OutputType.FILE);
+		        FileUtils.copyFile(source, new File(fullPath));
+		        return fullPath;
+		    } catch (Exception e) {
+		        System.err.println("Échec de la capture d'écran: " + e.getMessage());
+		        throw e;
+		    }
+		}
 }
