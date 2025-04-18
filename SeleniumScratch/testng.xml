@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="EcommerceSuite">
+<suite name="EcommerceSuite" parallel="methods" thread-count="5">
 
  <listeners>
     <listener class-name="SylviaAcademy.resources.Listeners"/>
@@ -10,6 +10,8 @@
     <test name="FunctionalTest">
         <classes>
             <class name="SylviaAcademy.tests.LoginTest">
+      </class>
+      <class name="SylviaAcademy.tests.ResearchTest">
       </class>
         </classes>
     </test>
