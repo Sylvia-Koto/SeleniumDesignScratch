@@ -9,8 +9,9 @@
       <class name="SylviaAcademy.tests.LoginTest">
         <methods>
           <include name="setUp"/>
+          <include name="testFail"/>
           <include name="tearDown"/>
-          <include name="testLoginFailure" invocation-numbers="1"/>
+          <include name="testLoginFailure" invocation-numbers="1 4"/>
         </methods>
       </class> <!-- SylviaAcademy.tests.LoginTest -->
     </classes>

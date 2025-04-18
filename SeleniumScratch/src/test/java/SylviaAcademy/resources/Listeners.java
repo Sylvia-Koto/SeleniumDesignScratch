@@ -25,14 +25,19 @@ import SylviaAcademy.factory.DriverManager;
 
 public class Listeners implements ITestListener {
 
-    ExtentReports extent = ExtentReporterNG.getReportObject();
-    ExtentTest test;
-    ThreadLocal<ExtentTest> extentTest = new ThreadLocal<>();
+	  private static ExtentReports extent = ExtentReporterNG.getReportObject();
+	    private ExtentTest test;
+	    private static ThreadLocal<ExtentTest> extentTest = new ThreadLocal<>(); // Rendue static
 
+  
     @Override
     public void onTestStart(ITestResult result) {
         test = extent.createTest(result.getMethod().getMethodName());
         extentTest.set(test);
+    }
+    
+    public static ExtentTest getCurrentTest() {
+        return extentTest.get();
     }
 
     @Override
@@ -42,34 +47,48 @@ public class Listeners implements ITestListener {
 
     @Override
     public void onTestFailure(ITestResult result) {
-        // 1. Log l'échec dans le rapport
         extentTest.get().fail(result.getThrowable());
-        
-        try {
-            // 2. Récupérer le driver depuis votre DriverManager
-            WebDriver driver = DriverManager.getDriver();
-            
-            if (driver != null) {
-                // 3. Capture en base64 (sans fichier temporaire)
-                String screenshotBase64 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BASE64);
-                
-                // 4. Attacher au rapport Extent
-                extentTest.get().fail("Screenshot du failure", 
-                    MediaEntityBuilder.createScreenCaptureFromBase64String(screenshotBase64).build());
-                
-                // 5. Optionnel: Sauvegarde dans un fichier
-                saveScreenshotToFile(result.getMethod().getMethodName(), screenshotBase64);
-            } else {
-                extentTest.get().warning("Aucun driver disponible dans DriverManager");
-                
-                // Fallback: Essayer de récupérer depuis l'instance de test
-                attemptFallbackScreenshot(result);
+
+        // Génère un ID unique basé sur la méthode + paramètres
+        String uniqueId = getUniqueTestId(result);
+
+        // Vérifie s’il y a un autre test échoué avec exactement les mêmes paramètres
+        boolean alreadyHandled = result.getTestContext().getFailedTests().getAllResults().stream()
+            .filter(r -> r != result)
+            .anyMatch(r -> getUniqueTestId(r).equals(uniqueId));
+
+        if (!alreadyHandled) {
+            try {
+                WebDriver driver = DriverManager.getDriver();
+                if (driver != null) {
+                    String screenshotBase64 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BASE64);
+                    extentTest.get().fail("Test failed after retries",
+                            MediaEntityBuilder.createScreenCaptureFromBase64String(screenshotBase64).build());
+                    saveScreenshotToFile(uniqueId, screenshotBase64); // utilise uniqueId pour nom de fichier
+                } else {
+                    attemptFallbackScreenshot(result);
+                }
+            } catch (Exception e) {
+                extentTest.get().warning("Échec de la capture: " + e.getMessage());
             }
-        } catch (Exception e) {
-            extentTest.get().warning("Échec de la capture: " + e.getMessage());
+        } else {
+            System.out.println("[DEBUG] Screenshot déjà pris pour : " + uniqueId);
         }
     }
+    
+    private String getUniqueTestId(ITestResult result) {
+        String methodName = result.getMethod().getMethodName();
+        String className = result.getTestClass().getName();
 
+        String params = "";
+        if (result.getParameters() != null && result.getParameters().length > 0) {
+            params = Arrays.stream(result.getParameters())
+                    .map(p -> p == null ? "null" : p.toString().replaceAll("[^a-zA-Z0-9]", "_"))
+                    .reduce((a, b) -> a + "_" + b).orElse("");
+        }
+
+        return className + "_" + methodName + (params.isEmpty() ? "" : "_" + params);
+    }
     private void attemptFallbackScreenshot(ITestResult result) {
         try {
             Object testInstance = result.getInstance();
@@ -102,4 +121,5 @@ public class Listeners implements ITestListener {
     public void onFinish(ITestContext context) {
         extent.flush();
     }
-}
+    
+}   
