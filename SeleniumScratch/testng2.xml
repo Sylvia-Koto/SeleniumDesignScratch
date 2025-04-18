@@ -7,8 +7,6 @@
 
 </listeners>
     <test name="FunctionalTest">
-        <!-- ✅ Le paramètre browser en premier -->
-        <parameter name="browser" value="chrome"/>
 
         <!-- ✅ Les groupes ensuite -->
         <groups>

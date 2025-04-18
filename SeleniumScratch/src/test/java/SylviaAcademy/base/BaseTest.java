@@ -23,18 +23,22 @@ import org.testng.annotations.Parameters;
 import SylviaAcademy.factory.DriverFactory;
 import SylviaAcademy.factory.DriverManager;
 import SylviaAcademy.pages.LoginPage;
+import SylviaAcademy.utils.ConfigReader;
 
 public class BaseTest {
 
 	protected LoginPage loginPage;
 
-    @Parameters("browser")
     @BeforeMethod(alwaysRun = true)
-    public void setUp(@Optional("chrome") String browser) {
+    public void setUp() {
+        String browser = ConfigReader.get("browser");
+        String url = ConfigReader.get("url");
+
         DriverFactory.createDriver(browser);
-        getDriver().get("https://rahulshettyacademy.com/client");
+        getDriver().get(url);
         loginPage = new LoginPage(getDriver());
     }
+ 
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
