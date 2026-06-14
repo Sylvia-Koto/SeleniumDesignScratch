@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="EcommerceSuite">
+
+ <listeners>
+    <listener class-name="SylviaAcademy.resources.Listeners"/>
+
+</listeners>
+    <test name="FunctionalTest">
+
+        <!-- ✅ Les groupes ensuite -->
+        <groups>
+            <run>
+                <include name="smoke"/>
+            </run>
+        </groups>
+
+        <!-- ✅ Puis les classes -->
+        <classes>
+            <class name="SylviaAcademy.tests.LoginTest"/>
+        </classes>
+    </test>
+
+</suite>

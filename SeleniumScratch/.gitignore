@@ -1,1 +1,5 @@
 /target/
+screenshots/
+reports/
+test-output/
+*.DS_Store

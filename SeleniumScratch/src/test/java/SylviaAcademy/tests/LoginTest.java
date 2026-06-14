@@ -1,9 +1,9 @@
 package SylviaAcademy.tests;
 
-import java.time.Duration;
-
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -11,43 +11,64 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import SylviaAcademy.base.BaseTest;
-import SylviaAcademy.pages.LoginPage;
+import SylviaAcademy.pages.DashboardPage;
+
+import java.time.Duration;
 
 public class LoginTest extends BaseTest {
 
-    @DataProvider(name = "loginCredentials")
-    public Object[][] getLoginData() {
+    @DataProvider(name = "validCredentials")
+    public Object[][] validCredentials() {
         return new Object[][]{
-            {"queentester@gmail.com", "Test@@1234", true},  // ✅ Valide
-            {"invalidUser", "invalidPass", false},          // ❌ Faux identifiants
-            {"", "", false},                                // ❌ Vide
-            {"queentester@gmail.com", "", false},           // ❌ Mot de passe manquant
-            {"", "Test1234", false}                          // ❌ Email manquant
+            {"queentester@gmail.com", "Test@@1234"}
         };
     }
 
-    @Test(dataProvider = "loginCredentials", groups = "smoke")
-    public void testLogin(String username, String password, boolean isSuccessExpected) {
-        driver.get("https://rahulshettyacademy.com/client");
+    @DataProvider(name = "invalidCredentials")
+    public Object[][] invalidCredentials() {
+        return new Object[][]{
+            // email, password, expectedEmailError, expectedPasswordError
+            {"queentester@gmail.com", "invalidPass", null, null},
+            {"", "Test@@1234", "*Test fails", null},
+            {"invalidUser@gmail.com", "invalidPass", null, null},
+            {"", "", "*Email is required", "*Password is required"},
+            {"queentester@gmail.com", "", null, "*Password is required"}
+        };
+    }
 
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.login(username, password);
+    @Test(dataProvider = "validCredentials", groups = "smoke", retryAnalyzer = SylviaAcademy.resources.Retry.class)
+    public void testLoginSuccess(String email, String password) {
+        loginPage.login(email, password);
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        DashboardPage dashboard = new DashboardPage(getDriver());
+        waitFor(By.cssSelector(".btn.btn-custom[routerlink='/dashboard/']"));
 
-        boolean loginSuccess;
-        try {
-            // 🟢 Attendre un élément spécifique du dashboard pour confirmer la connexion
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".btn.btn-custom[routerlink='/dashboard/']")));
-            loginSuccess = true;
-        } catch (TimeoutException e) {
-            loginSuccess = false;
+        Assert.assertTrue(dashboard.isAt(), "Redirect to dashboard failed");
+        Assert.assertFalse(isToastVisible(), "Unexpected error toast after successful login");
+    }
+
+    @Test(dataProvider = "invalidCredentials", retryAnalyzer = SylviaAcademy.resources.Retry.class)
+    public void testLoginFailure(String email, String password, String expectedEmailError, String expectedPasswordError) {
+        loginPage.login(email, password);
+
+        if (expectedEmailError == null && expectedPasswordError == null) {
+            Assert.assertTrue(isToastVisible(), "Expected error toast not displayed");
         }
+        if (expectedEmailError != null) {
+            Assert.assertEquals(loginPage.getEmailError(), expectedEmailError, "Wrong email error message");
+        }
+        if (expectedPasswordError != null) {
+            Assert.assertEquals(loginPage.getPasswordError(), expectedPasswordError, "Wrong password error message");
+        }
+    }
 
-        if (isSuccessExpected) {
-            Assert.assertTrue(loginSuccess, "Login should succeed with valid credentials.");
-        } else {
-            Assert.assertFalse(loginSuccess, "Login should fail with invalid credentials.");
+    private boolean isToastVisible() {
+        try {
+            WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(5));
+            WebElement toast = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".toast-message")));
+            return toast.isDisplayed();
+        } catch (NoSuchElementException | TimeoutException e) {
+            return false;
         }
     }
 }

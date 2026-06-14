@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="5" passed="5" failed="0" skipped="0">
+<testng-results retried="2" ignored="0" total="9" passed="5" failed="2" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-04-13T21:49:14 GMT" name="EcommerceSuite" finished-at="2025-04-13T21:50:03 GMT" duration-ms="48911">
+  <suite started-at="2025-04-18T14:27:48 GMT" name="EcommerceSuite" finished-at="2025-04-18T14:28:17 GMT" duration-ms="29104">
     <groups>
       <group name="smoke">
-        <method signature="LoginTest.testLogin(java.lang.String,java.lang.String,boolean)[pri:0, instance:SylviaAcademy.tests.LoginTest@55141def]" name="testLogin" class="SylviaAcademy.tests.LoginTest"/>
+        <method signature="LoginTest.testLoginSuccess(java.lang.String,java.lang.String)[pri:0, instance:SylviaAcademy.tests.LoginTest@565f390]" name="testLoginSuccess" class="SylviaAcademy.tests.LoginTest"/>
       </group> <!-- smoke -->
     </groups>
-    <test started-at="2025-04-13T21:49:14 GMT" name="FunctionalTest" finished-at="2025-04-13T21:50:03 GMT" duration-ms="48911">
-      <class name="SylviaAcademy.tests.LoginTest">
-        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:SylviaAcademy.tests.LoginTest@55141def]" started-at="2025-04-13T21:49:14 GMT" name="setUp" finished-at="2025-04-13T21:49:16 GMT" duration-ms="1172" status="PASS">
+    <test started-at="2025-04-18T14:27:48 GMT" name="FunctionalTest" finished-at="2025-04-18T14:28:17 GMT" duration-ms="29104">
+      <class name="SylviaAcademy.tests.ResearchTest">
+        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:SylviaAcademy.tests.ResearchTest@5038d0b5]" started-at="2025-04-18T14:27:48 GMT" name="setUp" finished-at="2025-04-18T14:27:53 GMT" duration-ms="4691" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -21,7 +21,112 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="testLogin(java.lang.String,java.lang.String,boolean)[pri:0, instance:SylviaAcademy.tests.LoginTest@55141def]" started-at="2025-04-13T21:49:16 GMT" name="testLogin" data-provider="loginCredentials" finished-at="2025-04-13T21:49:21 GMT" duration-ms="4898" status="PASS">
+        <test-method retried="true" signature="testFail()[pri:0, instance:SylviaAcademy.tests.ResearchTest@5038d0b5]" started-at="2025-04-18T14:27:53 GMT" name="testFail" finished-at="2025-04-18T14:27:53 GMT" duration-ms="2" status="SKIP">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[This test is meant to fail]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: This test is meant to fail
+at org.testng.Assert.fail(Assert.java:111)
+at SylviaAcademy.tests.ResearchTest.testFail(ResearchTest.java:16)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+at org.testng.internal.thread.graph.TestNGFutureTask.run(TestNGFutureTask.java:22)
+at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+at java.base/java.lang.Thread.run(Thread.java:1583)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testFail -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:SylviaAcademy.tests.ResearchTest@5038d0b5]" started-at="2025-04-18T14:27:53 GMT" name="tearDown" finished-at="2025-04-18T14:27:53 GMT" duration-ms="83" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:SylviaAcademy.tests.ResearchTest@5038d0b5]" started-at="2025-04-18T14:27:53 GMT" name="setUp" finished-at="2025-04-18T14:27:59 GMT" duration-ms="5631" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="testFail()[pri:0, instance:SylviaAcademy.tests.ResearchTest@5038d0b5]" started-at="2025-04-18T14:27:59 GMT" name="testFail" finished-at="2025-04-18T14:27:59 GMT" duration-ms="3" status="FAIL">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[This test is meant to fail]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: This test is meant to fail
+at org.testng.Assert.fail(Assert.java:111)
+at SylviaAcademy.tests.ResearchTest.testFail(ResearchTest.java:16)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
+at org.testng.internal.invokers.TestInvoker.retryFailed(TestInvoker.java:269)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:76)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+at org.testng.internal.thread.graph.TestNGFutureTask.run(TestNGFutureTask.java:22)
+at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+at java.base/java.lang.Thread.run(Thread.java:1583)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testFail -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:SylviaAcademy.tests.ResearchTest@5038d0b5]" started-at="2025-04-18T14:27:59 GMT" name="tearDown" finished-at="2025-04-18T14:27:59 GMT" duration-ms="82" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- SylviaAcademy.tests.ResearchTest -->
+      <class name="SylviaAcademy.tests.LoginTest">
+        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:SylviaAcademy.tests.LoginTest@565f390]" started-at="2025-04-18T14:27:48 GMT" name="setUp" finished-at="2025-04-18T14:27:51 GMT" duration-ms="2833" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:SylviaAcademy.tests.LoginTest@565f390]" started-at="2025-04-18T14:27:48 GMT" name="setUp" finished-at="2025-04-18T14:27:53 GMT" duration-ms="4578" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="testLoginSuccess(java.lang.String,java.lang.String)[pri:0, instance:SylviaAcademy.tests.LoginTest@565f390]" started-at="2025-04-18T14:27:51 GMT" name="testLoginSuccess" data-provider="validCredentials" finished-at="2025-04-18T14:27:56 GMT" duration-ms="5452" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -33,35 +138,15 @@
                 <![CDATA[Test@@1234]]>
               </value>
             </param>
-            <param index="2">
-              <value>
-                <![CDATA[true]]>
-              </value>
-            </param>
           </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testLogin -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:SylviaAcademy.tests.LoginTest@55141def]" started-at="2025-04-13T21:49:21 GMT" name="tearDown" finished-at="2025-04-13T21:49:21 GMT" duration-ms="88" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:SylviaAcademy.tests.LoginTest@55141def]" started-at="2025-04-13T21:49:21 GMT" name="setUp" finished-at="2025-04-13T21:49:21 GMT" duration-ms="745" status="PASS">
+        </test-method> <!-- testLoginSuccess -->
+        <test-method signature="testLoginFailure(java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:SylviaAcademy.tests.LoginTest@565f390]" started-at="2025-04-18T14:27:53 GMT" name="testLoginFailure" data-provider="invalidCredentials" finished-at="2025-04-18T14:27:53 GMT" duration-ms="659" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[chrome]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setUp -->
-        <test-method signature="testLogin(java.lang.String,java.lang.String,boolean)[pri:0, instance:SylviaAcademy.tests.LoginTest@55141def]" started-at="2025-04-13T21:49:21 GMT" name="testLogin" data-provider="loginCredentials" finished-at="2025-04-13T21:49:31 GMT" duration-ms="10030" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[invalidUser]]>
+                <![CDATA[queentester@gmail.com]]>
               </value>
             </param>
             <param index="1">
@@ -70,19 +155,20 @@
               </value>
             </param>
             <param index="2">
-              <value>
-                <![CDATA[false]]>
-              </value>
+              <value is-null="true"/>
+            </param>
+            <param index="3">
+              <value is-null="true"/>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testLogin -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:SylviaAcademy.tests.LoginTest@55141def]" started-at="2025-04-13T21:49:31 GMT" name="tearDown" finished-at="2025-04-13T21:49:31 GMT" duration-ms="89" status="PASS">
+        </test-method> <!-- testLoginFailure -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:SylviaAcademy.tests.LoginTest@565f390]" started-at="2025-04-18T14:27:53 GMT" name="tearDown" finished-at="2025-04-18T14:27:53 GMT" duration-ms="94" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:SylviaAcademy.tests.LoginTest@55141def]" started-at="2025-04-13T21:49:31 GMT" name="setUp" finished-at="2025-04-13T21:49:32 GMT" duration-ms="680" status="PASS">
+        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:SylviaAcademy.tests.LoginTest@565f390]" started-at="2025-04-18T14:27:53 GMT" name="setUp" finished-at="2025-04-18T14:27:55 GMT" duration-ms="1650" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -93,7 +179,188 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="testLogin(java.lang.String,java.lang.String,boolean)[pri:0, instance:SylviaAcademy.tests.LoginTest@55141def]" started-at="2025-04-13T21:49:32 GMT" name="testLogin" data-provider="loginCredentials" finished-at="2025-04-13T21:49:42 GMT" duration-ms="9878" status="PASS">
+        <test-method retried="true" signature="testLoginFailure(java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:SylviaAcademy.tests.LoginTest@565f390]" started-at="2025-04-18T14:27:55 GMT" name="testLoginFailure" data-provider="invalidCredentials" finished-at="2025-04-18T14:27:57 GMT" duration-ms="2442" status="SKIP">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Test@@1234]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[*Test fails]]>
+              </value>
+            </param>
+            <param index="3">
+              <value is-null="true"/>
+            </param>
+          </params>
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[Message d'erreur email incorrect expected [*Test fails] but found [*Email is required]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: Message d'erreur email incorrect expected [*Test fails] but found [*Email is required]
+at org.testng.Assert.fail(Assert.java:111)
+at org.testng.Assert.failNotEquals(Assert.java:1590)
+at org.testng.Assert.assertEqualsImpl(Assert.java:150)
+at org.testng.Assert.assertEquals(Assert.java:132)
+at org.testng.Assert.assertEquals(Assert.java:656)
+at SylviaAcademy.tests.LoginTest.testLoginFailure(LoginTest.java:61)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+at org.testng.internal.thread.graph.TestNGFutureTask.run(TestNGFutureTask.java:22)
+at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+at java.base/java.lang.Thread.run(Thread.java:1583)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testLoginFailure -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:SylviaAcademy.tests.LoginTest@565f390]" started-at="2025-04-18T14:27:56 GMT" name="tearDown" finished-at="2025-04-18T14:27:56 GMT" duration-ms="87" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:SylviaAcademy.tests.LoginTest@565f390]" started-at="2025-04-18T14:27:58 GMT" name="tearDown" finished-at="2025-04-18T14:27:58 GMT" duration-ms="81" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:SylviaAcademy.tests.LoginTest@565f390]" started-at="2025-04-18T14:27:58 GMT" name="setUp" finished-at="2025-04-18T14:27:59 GMT" duration-ms="1609" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="testLoginFailure(java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:SylviaAcademy.tests.LoginTest@565f390]" started-at="2025-04-18T14:27:59 GMT" name="testLoginFailure" data-provider="invalidCredentials" finished-at="2025-04-18T14:28:02 GMT" duration-ms="2778" status="FAIL">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Test@@1234]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[*Test fails]]>
+              </value>
+            </param>
+            <param index="3">
+              <value is-null="true"/>
+            </param>
+          </params>
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[Message d'erreur email incorrect expected [*Test fails] but found [*Email is required]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: Message d'erreur email incorrect expected [*Test fails] but found [*Email is required]
+at org.testng.Assert.fail(Assert.java:111)
+at org.testng.Assert.failNotEquals(Assert.java:1590)
+at org.testng.Assert.assertEqualsImpl(Assert.java:150)
+at org.testng.Assert.assertEquals(Assert.java:132)
+at org.testng.Assert.assertEquals(Assert.java:656)
+at SylviaAcademy.tests.LoginTest.testLoginFailure(LoginTest.java:61)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
+at org.testng.internal.invokers.TestInvoker.retryFailed(TestInvoker.java:269)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:76)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+at org.testng.internal.thread.graph.TestNGFutureTask.run(TestNGFutureTask.java:22)
+at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+at java.base/java.lang.Thread.run(Thread.java:1583)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testLoginFailure -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:SylviaAcademy.tests.LoginTest@565f390]" started-at="2025-04-18T14:28:02 GMT" name="tearDown" finished-at="2025-04-18T14:28:03 GMT" duration-ms="81" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:SylviaAcademy.tests.LoginTest@565f390]" started-at="2025-04-18T14:28:03 GMT" name="setUp" finished-at="2025-04-18T14:28:07 GMT" duration-ms="4815" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="testLoginFailure(java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:SylviaAcademy.tests.LoginTest@565f390]" started-at="2025-04-18T14:28:07 GMT" name="testLoginFailure" data-provider="invalidCredentials" finished-at="2025-04-18T14:28:08 GMT" duration-ms="660" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[invalidUser@gmail.com]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[invalidPass]]>
+              </value>
+            </param>
+            <param index="2">
+              <value is-null="true"/>
+            </param>
+            <param index="3">
+              <value is-null="true"/>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testLoginFailure -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:SylviaAcademy.tests.LoginTest@565f390]" started-at="2025-04-18T14:28:08 GMT" name="tearDown" finished-at="2025-04-18T14:28:08 GMT" duration-ms="84" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:SylviaAcademy.tests.LoginTest@565f390]" started-at="2025-04-18T14:28:08 GMT" name="setUp" finished-at="2025-04-18T14:28:10 GMT" duration-ms="1673" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="testLoginFailure(java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:SylviaAcademy.tests.LoginTest@565f390]" started-at="2025-04-18T14:28:10 GMT" name="testLoginFailure" data-provider="invalidCredentials" finished-at="2025-04-18T14:28:13 GMT" duration-ms="2884" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -107,18 +374,23 @@
             </param>
             <param index="2">
               <value>
-                <![CDATA[false]]>
+                <![CDATA[*Email is required]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[*Password is required]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testLogin -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:SylviaAcademy.tests.LoginTest@55141def]" started-at="2025-04-13T21:49:42 GMT" name="tearDown" finished-at="2025-04-13T21:49:42 GMT" duration-ms="90" status="PASS">
+        </test-method> <!-- testLoginFailure -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:SylviaAcademy.tests.LoginTest@565f390]" started-at="2025-04-18T14:28:13 GMT" name="tearDown" finished-at="2025-04-18T14:28:13 GMT" duration-ms="82" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:SylviaAcademy.tests.LoginTest@55141def]" started-at="2025-04-13T21:49:42 GMT" name="setUp" finished-at="2025-04-13T21:49:43 GMT" duration-ms="759" status="PASS">
+        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:SylviaAcademy.tests.LoginTest@565f390]" started-at="2025-04-18T14:28:13 GMT" name="setUp" finished-at="2025-04-18T14:28:17 GMT" duration-ms="4133" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -129,7 +401,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="testLogin(java.lang.String,java.lang.String,boolean)[pri:0, instance:SylviaAcademy.tests.LoginTest@55141def]" started-at="2025-04-13T21:49:43 GMT" name="testLogin" data-provider="loginCredentials" finished-at="2025-04-13T21:49:52 GMT" duration-ms="9501" status="PASS">
+        <test-method signature="testLoginFailure(java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:SylviaAcademy.tests.LoginTest@565f390]" started-at="2025-04-18T14:28:17 GMT" name="testLoginFailure" data-provider="invalidCredentials" finished-at="2025-04-18T14:28:17 GMT" duration-ms="136" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -142,51 +414,18 @@
               </value>
             </param>
             <param index="2">
+              <value is-null="true"/>
+            </param>
+            <param index="3">
               <value>
-                <![CDATA[false]]>
+                <![CDATA[*Password is required]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testLogin -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:SylviaAcademy.tests.LoginTest@55141def]" started-at="2025-04-13T21:49:52 GMT" name="tearDown" finished-at="2025-04-13T21:49:52 GMT" duration-ms="92" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:SylviaAcademy.tests.LoginTest@55141def]" started-at="2025-04-13T21:49:52 GMT" name="setUp" finished-at="2025-04-13T21:49:53 GMT" duration-ms="759" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[chrome]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setUp -->
-        <test-method signature="testLogin(java.lang.String,java.lang.String,boolean)[pri:0, instance:SylviaAcademy.tests.LoginTest@55141def]" started-at="2025-04-13T21:49:53 GMT" name="testLogin" data-provider="loginCredentials" finished-at="2025-04-13T21:50:03 GMT" duration-ms="10017" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[Test1234]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[false]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testLogin -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:SylviaAcademy.tests.LoginTest@55141def]" started-at="2025-04-13T21:50:03 GMT" name="tearDown" finished-at="2025-04-13T21:50:03 GMT" duration-ms="88" status="PASS">
+        </test-method> <!-- testLoginFailure -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:SylviaAcademy.tests.LoginTest@565f390]" started-at="2025-04-18T14:28:17 GMT" name="tearDown" finished-at="2025-04-18T14:28:17 GMT" duration-ms="82" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
