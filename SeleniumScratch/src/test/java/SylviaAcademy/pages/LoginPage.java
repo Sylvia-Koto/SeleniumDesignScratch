@@ -1,27 +1,42 @@
 package SylviaAcademy.pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage {
-	
-	 private WebDriver driver;
 
-	    // Locators
-	    private By usernameInput = By.id("userEmail");
-	    private By passwordInput = By.id("userPassword");
-	    private By loginButton = By.id("login");
+    @FindBy(id = "userEmail")
+    private WebElement emailInput;
 
-	    public LoginPage(WebDriver driver) {
-	        this.driver = driver;
-	    }
+    @FindBy(id = "userPassword")
+    private WebElement passwordInput;
 
-	    // Actions
-	    public void login(String username, String password) {
-	        driver.findElement(usernameInput).sendKeys(username);
-	        driver.findElement(passwordInput).sendKeys(password);
-	        driver.findElement(loginButton).click();
-	        
-	    }    
+    @FindBy(id = "login")
+    private WebElement loginButton;
 
+    @FindBy(xpath = "//input[@id='userEmail']/following-sibling::div[@class='invalid-feedback']/div")
+    private WebElement emailError;
+
+    @FindBy(xpath = "//input[@id='userPassword']/following-sibling::div[@class='invalid-feedback']/div")
+    private WebElement passwordError;
+
+    public LoginPage(WebDriver driver) {
+        PageFactory.initElements(driver, this);
+    }
+
+    public void login(String email, String password) {
+        emailInput.sendKeys(email);
+        passwordInput.sendKeys(password);
+        loginButton.click();
+    }
+
+    public String getEmailError() {
+        return emailError.getText();
+    }
+
+    public String getPasswordError() {
+        return passwordError.getText();
+    }
 }

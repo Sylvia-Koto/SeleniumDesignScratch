@@ -1,69 +1,74 @@
 package SylviaAcademy.tests;
 
-import java.time.Duration;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
 import SylviaAcademy.base.BaseTest;
-import SylviaAcademy.pages.LoginPage;
-import SylviaAcademy.resources.Retry;
+import SylviaAcademy.pages.DashboardPage;
+
+import java.time.Duration;
 
 public class LoginTest extends BaseTest {
 
-    // === 1. DataProviders séparés pour succès/échec ===
     @DataProvider(name = "validCredentials")
-    public Object[][] provideValidCredentials() {
+    public Object[][] validCredentials() {
         return new Object[][]{
-            {"queentester@gmail.com", "Test@@1234"}  // ✅ Cas de succès
+            {"queentester@gmail.com", "Test@@1234"}
         };
     }
 
     @DataProvider(name = "invalidCredentials")
-    public Object[][] provideInvalidCredentials() {
+    public Object[][] invalidCredentials() {
         return new Object[][]{
-            // Format: username, password, expectedEmailError, expectedPasswordError
-            {"queentester@gmail.com", "invalidPass", null, null}, // ❌ Incorrect Password
-            {"", "Test@@1234", "*Test fails", null},       // ❌ Email vide
-            {"invalidUser@gmail.com", "invalidPass", null, null}, // ❌ Incorrect Password and email
-            {"", "", "*Email is required", "*Password is required"}, // ❌ Champs vides
-            {"queentester@gmail.com", "", null, "*Password is required"} // ❌ Mot de passe vide
+            // email, password, expectedEmailError, expectedPasswordError
+            {"queentester@gmail.com", "invalidPass", null, null},
+            {"", "Test@@1234", "*Test fails", null},
+            {"invalidUser@gmail.com", "invalidPass", null, null},
+            {"", "", "*Email is required", "*Password is required"},
+            {"queentester@gmail.com", "", null, "*Password is required"}
         };
     }
 
-    // === 2. Test de succès (uniquement pour les credentials valides) ===
     @Test(dataProvider = "validCredentials", groups = "smoke", retryAnalyzer = SylviaAcademy.resources.Retry.class)
-    public void testLoginSuccess(String username, String password) {
-        loginPage.login(username, password);
-        waitForWebElementToLocate(By.cssSelector(".btn.btn-custom[routerlink='/dashboard/']"));
-        assertRedirectionToDashboard();
-        assertNoLoginErrorDisplayed();
+    public void testLoginSuccess(String email, String password) {
+        loginPage.login(email, password);
+
+        DashboardPage dashboard = new DashboardPage(getDriver());
+        waitFor(By.cssSelector(".btn.btn-custom[routerlink='/dashboard/']"));
+
+        Assert.assertTrue(dashboard.isAt(), "Redirect to dashboard failed");
+        Assert.assertFalse(isToastVisible(), "Unexpected error toast after successful login");
     }
 
-    // === 3. Test d'échec (pour les cas invalides) ===
     @Test(dataProvider = "invalidCredentials", retryAnalyzer = SylviaAcademy.resources.Retry.class)
-    public void testLoginFailure(String username, String password, String expectedEmailError, String expectedPasswordError) {
-        loginPage.login(username, password);
-        
+    public void testLoginFailure(String email, String password, String expectedEmailError, String expectedPasswordError) {
+        loginPage.login(email, password);
+
         if (expectedEmailError == null && expectedPasswordError == null) {
-            assertLoginErrorDisplayed();
+            Assert.assertTrue(isToastVisible(), "Expected error toast not displayed");
         }
-        
-        // Vérifications dynamiques des erreurs
         if (expectedEmailError != null) {
-            Assert.assertEquals(getEmailError(), expectedEmailError, "Message d'erreur email incorrect");
+            Assert.assertEquals(loginPage.getEmailError(), expectedEmailError, "Wrong email error message");
         }
         if (expectedPasswordError != null) {
-            Assert.assertEquals(getPasswordError(), expectedPasswordError, "Message d'erreur mot de passe incorrect");
+            Assert.assertEquals(loginPage.getPasswordError(), expectedPasswordError, "Wrong password error message");
         }
     }
-    
-    
+
+    private boolean isToastVisible() {
+        try {
+            WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(5));
+            WebElement toast = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".toast-message")));
+            return toast.isDisplayed();
+        } catch (NoSuchElementException | TimeoutException e) {
+            return false;
+        }
+    }
 }
