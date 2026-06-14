@@ -29,7 +29,7 @@ public class LoginTest extends BaseTest {
         return new Object[][]{
             // email, password, expectedEmailError, expectedPasswordError
             {"queentester@gmail.com", "invalidPass", null, null},
-            {"", "Test@@1234", "*Test fails", null},
+            {"", "Test@@1234", "*Email is required", null},
             {"invalidUser@gmail.com", "invalidPass", null, null},
             {"", "", "*Email is required", "*Password is required"},
             {"queentester@gmail.com", "", null, "*Password is required"}

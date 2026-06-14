@@ -12,7 +12,7 @@ public class SubmitOrderTest extends BaseTest {
 
     private static final String PRODUCT_NAME = "IPHONE 13 PRO";
 
-    @Test(groups = "smoke", retryAnalyzer = SylviaAcademy.resources.Retry.class)
+    @Test(groups = "smoke")
     public void testAddProductToCart() {
         loginPage.login(ConfigReader.get("username"), ConfigReader.get("password"));
 
